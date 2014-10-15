@@ -3,8 +3,7 @@ package action;
 
 import Book.book;
 
-import com.opensymphony.xwork2.ActionSupport;
-import dao.DBconn;
+
 
 public class BookDetails extends ActionSupport {
 	private String authorname;
