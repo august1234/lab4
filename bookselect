@@ -1,0 +1,76 @@
+package action;
+
+import java.sql.*;
+
+import Book.book;
+import Book.author;
+import dao.DBconn;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class BookSelect extends ActionSupport {
+	private book book = new book();
+	private author author = new author();
+	private String BookID;
+	public book getBook() {
+		return book;
+	}
+
+	public void setBook(book book) {
+		this.book = book;
+	}
+
+	public author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(author author) {
+		this.author = author;
+	}
+
+	public String getBookID() {
+		return BookID;
+	}
+
+	public void setBookID(String BookID) {
+		this.BookID = BookID;
+	}
+
+
+	public String execute() {
+		String ret = ERROR;
+		Connection conn = null;
+		DBconn dao = new DBconn();
+		try {
+			conn = dao.GetConn();
+			String sql1 = new String();
+			ResultSet rs1, rs2 = null;
+			String sql = "select * from Book where ISBN='" + BookID + "'";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			rs1 = ps.executeQuery();
+			while (rs1.next()) {
+				book.setISBN(rs1.getString(1));
+				book.setTitle(rs1.getString(2));
+				book.setAuthorID(rs1.getString(3));
+				book.setPublisher(rs1.getString(4));
+				book.setPublishDate(rs1.getString(5));
+				book.setPrice(rs1.getString(6));
+				sql1 = "select * from Author where AuthorID='"+ rs1.getString("AuthorID") + "'";
+			}
+			PreparedStatement ps1 = conn.prepareStatement(sql1);
+			rs2 = ps1.executeQuery();
+			while (rs2.next()) {
+				author.setAuthorID(rs2.getString(1));
+				author.setName(rs2.getString(2));
+				author.setAge(rs2.getString(3));
+				author.setCountry(rs2.getString(4));
+				ret = "success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ret = ERROR;
+		} 
+		return ret;
+	}
+
+}	
