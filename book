@@ -1,0 +1,51 @@
+package Book;
+
+public class book {
+	private String ISBN;
+	public void setISBN(String ISBN){
+		this.ISBN = ISBN;
+	}
+	public String getISBN(){
+		return ISBN;
+	}
+	
+	private String 	Title;
+	public void setTitle(String Title){
+		this.Title = Title;
+	}
+	public String getTitle(){
+		return Title;
+	}
+	
+	private String Publisher;
+	public void setPublisher(String Publisher){
+		this.Publisher = Publisher;
+	}
+	public String getPublisher(){
+		return Publisher;
+	}
+	
+	private String PublishDate;
+	public void setPublishDate(String PublishDate){
+		this.PublishDate = PublishDate;
+	}
+	public String getPublishDate(){
+		return PublishDate;
+	}
+	
+	private String Price;
+	public void setPrice(String Price){
+		this.Price = Price;
+	}
+	public String getPrice(){
+		return Price;
+	}
+	
+	private String AuthorID;
+	public void setAuthorID(String AuthorID){
+		this.AuthorID = AuthorID;
+	}
+	public String getAuthorID(){
+		return AuthorID;
+	}
+}
