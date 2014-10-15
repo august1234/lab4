@@ -1,13 +1,7 @@
 package Book;
 
 public class author {
-	private String AuthorID;
-	public void setAuthorID(String AuthorID){
-		this.AuthorID = AuthorID;
-	}
-	public String getAuthorID(){
-		return AuthorID;
-	}
+	
 	
 	private String Name;
 	public void setName(String Name){
