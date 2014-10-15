@@ -1,0 +1,39 @@
+package Book;
+
+public class author {
+	private String AuthorID;
+	public void setAuthorID(String AuthorID){
+		this.AuthorID = AuthorID;
+	}
+	public String getAuthorID(){
+		return AuthorID;
+	}
+	
+	private String Name;
+	public void setName(String Name){
+		this.Name = Name;
+	}
+	public String getName(){
+		return Name;
+	}
+	
+	private String Age;
+	public void setAge(String Age){
+		this.Age = Age;
+	}
+	public String getAge(){
+		return Age;
+	}
+	
+	private String Country;
+	public void setCountry(String Country){
+		this.Country = Country;
+	}
+	public String getCountry(){
+		return Country;
+	}
+
+}
+
+
+
