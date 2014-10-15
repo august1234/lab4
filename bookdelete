@@ -1,0 +1,35 @@
+package action;
+
+import java.sql.*;
+
+import com.opensymphony.xwork2.ActionSupport;
+import dao.DBconn;
+
+public class BookDelete extends ActionSupport {
+	private String bkID = new String();
+	public void setBkID(String bkID) {
+		this.bkID = bkID;
+	}
+	public String getBkID() {
+		return bkID;
+	}
+	public String execute() {
+		String RET = ERROR;
+		Connection conn = null;
+		DBconn dao = new DBconn();
+		try {
+			System.out.println(bkID);
+			String sql = "delete from Book  where ISBN = '" + bkID + "'";
+			System.out.println(sql);
+			conn = dao.GetConn();
+			PreparedStatement PS = conn.prepareStatement(sql);
+			int aa = PS.executeUpdate();
+			RET = SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			RET = ERROR;
+		} 
+		return RET;
+	}
+	
+}
