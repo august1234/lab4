@@ -1,0 +1,68 @@
+package action;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.*;
+
+import Book.book;
+
+import com.opensymphony.xwork2.ActionSupport;
+import dao.DBconn;
+
+public class BookDetails extends ActionSupport {
+	private String authorname;
+	private List<book> booklist = new ArrayList<book>();
+	
+	public String getAuthorname() {
+		return authorname;
+	}
+	public void setAuthorname(String authorname) {
+		this.authorname = authorname;
+	}
+
+	public List<book> getBooklist() {
+		return booklist;
+	}
+	public void getBooklist(List<book> booklist) {
+		this.booklist = booklist;
+	}
+
+	public String execute() {
+		String ret = ERROR;
+		Connection conn = null;
+		DBconn dao = new DBconn();
+		try {
+			String sql1 = new String();
+			ResultSet RS,RS1=null;	
+			conn = dao.GetConn();
+			String sql = "select AuthorID from Author where Name='"+authorname+"'";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			RS = ps.executeQuery();
+			while(RS.next())
+			{
+				sql1 = "select * from Book where AuthorID='"+RS.getString("AuthorID")+"'";
+			}
+			PreparedStatement ps1 = conn.prepareStatement(sql1);
+			RS1 = ps1.executeQuery();
+			while (RS1.next()) {
+				book bl = new book();
+				bl.setISBN(RS1.getString("ISBN"));
+				bl.setTitle(RS1.getString(2));
+				bl.setAuthorID(RS1.getString(3));
+				bl.setPublisher(RS1.getString(4));
+				bl.setPublishDate(RS1.getString(5));
+				bl.setPrice(RS1.getString(6));
+				booklist.add(bl);
+				ret = "success";
+			}
+			booklist.toArray();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			ret = ERROR;
+		} 
+		return ret;
+	}
+
+	
+}
