@@ -18,9 +18,7 @@ public class BookSelect extends ActionSupport {
 
 	public void setBook(book book) {
 		this.book = book;
-	}
-
-	public author getAuthor() {
+ getAuthor() {
 		return author;
 	}
 

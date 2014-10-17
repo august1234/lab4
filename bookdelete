@@ -27,9 +27,6 @@ public class BookDelete extends ActionSupport {
 			RET = SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
-			RET = ERROR;
-		} 
-		return RET;
-	}
+
 	
 }
